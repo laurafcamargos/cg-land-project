@@ -2,7 +2,7 @@
 
 **SCC0250 - Computação Gráfica (2026) — ICMC-USP**
 
-| Estudante | USP ID |
+| Aluno | NUSP |
 |---|---|
 | Laura Fernandes Camargos | 13692334 |
 | Vitor Hugo Almeida Couto | 13672787 |
