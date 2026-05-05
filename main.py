@@ -1,6 +1,6 @@
 # SCC0250 - Computação Gráfica (2026) — ICMC-USP
 # Laura Fernandes Camargos - 13692334
-# External scene implementation
+# Vitor Hugo Almeida Couto - 13672787
 
 import glfw
 from OpenGL.GL import *

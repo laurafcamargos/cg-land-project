@@ -189,4 +189,28 @@ def carregaModelos():
     modelo = load_model_from_file('models/logs/Wood.obj')
     process_faces(modelo, vertices_list, textures_coord_list, triangulate_quads=True)
 
+    # COTTAGE — mat-wood-dark→tex12, mat-roof-tiles→tex13, mat-concrete→tex14, mat-wood-light→tex15
+    load_texture_from_file(12, 'models/cottage/wood-dark.jpeg')
+    load_texture_from_file(13, 'models/cottage/roof-tiles-color.jpeg')
+    load_texture_from_file(14, 'models/cottage/concrete.jpeg')
+    load_texture_from_file(15, 'models/cottage/wood-light.jpeg')
+
+    modelo = load_model_from_file('models/cottage/small-cottage.obj')
+    process_faces(modelo, vertices_list, textures_coord_list)
+
+    # WOODEN TABLE — single material (tex 16)
+    load_texture_from_file(16, 'models/wooden_table/Wooden_Table_Base_color.png')
+    modelo = load_model_from_file('models/wooden_table/wooden_table.obj')
+    process_faces(modelo, vertices_list, textures_coord_list)
+
+    # WOOD CHAIR — single material (tex 17); albedo lives in wooden_table/
+    load_texture_from_file(17, 'models/wooden_table/old_wooden_chair_Albedo.png')
+    modelo = load_model_from_file('models/wood_chair/wood_chair.obj')
+    process_faces(modelo, vertices_list, textures_coord_list)
+
+    # CANDLE — single material (tex 18)
+    load_texture_from_file(18, 'models/candle/Gravity_falls_candle_texture.png')
+    modelo = load_model_from_file('models/candle/candle.obj')
+    process_faces(modelo, vertices_list, textures_coord_list)
+
     return vertices_list, textures_coord_list

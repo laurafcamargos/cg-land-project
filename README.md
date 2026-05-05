@@ -7,7 +7,7 @@
 | Laura Fernandes Camargos | 13692334 |
 | Vitor Hugo Almeida Couto | 13672787 |
 
-An interactive external 3D scene with grass terrain, trees, sky, and interactive objects. Explore the environment with camera controls and manipulate objects via keyboard.
+An interactive 3D scene featuring a forest clearing with a cottage, outdoor objects, and a fully furnished interior. Explore the environment with camera controls and manipulate objects via keyboard.
 
 ---
 
@@ -68,6 +68,8 @@ python main.py
 ├── models/                      # 3D model files + textures
 │   ├── grama/, skybox/, tree/, bench/
 │   ├── horse/, wheat/, bucket/, logs/
+│   ├── cottage/, wooden_table/, wood_chair/
+│   └── candle/
 │
 └── requirements.txt
 ```
@@ -86,11 +88,19 @@ python main.py
 
 ## Scene Composition
 
-8 textured `.obj` models distributed throughout the external environment:
-- Grass terrain, skybox, 30 trees (scattered)
-- Bench (interactive translation)
-- Horse (interactive rotation)
-- Wheat × 3 (interactive scale)
-- Bucket, tree logs (fixed)
+13 textured `.obj` models across the outdoor environment and cottage interior:
+
+**Outdoor**
+- Grass terrain and skybox
+- 150 trees scattered in a ring (radius 30–95)
+- Bench (interactive translation via arrow keys)
+- Horse (interactive rotation via N/M)
+- Wheat × 3 (interactive scale via Z/X)
+- Bucket and wood logs × 3 (fixed)
+
+**Cottage interior**
+- Cottage (small-cottage.obj — wood, roof tiles, concrete materials)
+- Wooden table with 4 wood chairs arranged around it
+- Candle on the table
 
 No lighting effects (per project scope).

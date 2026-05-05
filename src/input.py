@@ -24,7 +24,7 @@ def key_event(window, key, scancode, action, mods):
 
 def process_camera():
     """Update camera position based on currently pressed keys."""
-    cameraSpeed = 0.3
+    cameraSpeed = 0.10
     direction = glm.normalize(state.cameraFront)
 
     if glfw.KEY_W in state.keys_pressed:
@@ -101,7 +101,7 @@ def mouse_event(window, xpos, ypos):
     state.lastX = xpos
     state.lastY = ypos
 
-    sensitivity = 0.5
+    sensitivity = 0.35
     xoffset *= sensitivity
     yoffset *= sensitivity
 

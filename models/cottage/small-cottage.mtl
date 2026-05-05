@@ -1,0 +1,53 @@
+# Blender 5.1.1 MTL File: 'small-cottage.blend'
+# www.blender.org
+
+newmtl mat-concrete
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:/concrete.jpg
+
+newmtl mat-floor-inside
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 0.768080 0.404845
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl mat-roof-tiles
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.471338 0.471338 0.471338
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:/roof-tiles-color.jpg
+map_Bump -bm 1.000000 C:/roof-tiles-normals.jpg
+
+newmtl mat-wood-dark
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:/wood-dark.jpg
+
+newmtl mat-wood-light
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:/wood-light.jpg

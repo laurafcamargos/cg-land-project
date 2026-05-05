@@ -98,8 +98,6 @@ class Scene:
         glDrawArrays(GL_TRIANGLES, 23146, 20910)
 
     def desenha_bench(self):
-        # Z positivo, ~15 m do centro: fora do anel dos pinheiros (raio 30–95), perto da câmera (0, 3, 15)
-        # Translação interativa: setas somam em state.trans_x / trans_z (req. projeto)
         angle = 115.0
         r_x = 0.0
         r_y = 1.0
@@ -118,9 +116,6 @@ class Scene:
         glDrawArrays(GL_TRIANGLES, 44056, 4008)
 
     def desenha_cavalo(self):
-        # Clareira central, mais longe do trigo
-        # OBJ Z-up: -90° em X; escala menor (~3,5 m) para casar com banco/árvores
-        # Rotação interativa: N/M somam state.angulo_rotacao em Y
         angle = 25.0 + state.angulo_rotacao
         r_x = 0.0
         r_y = 1.0
@@ -147,16 +142,16 @@ class Scene:
         glBindTexture(GL_TEXTURE_2D, 6)
         loc_model = glGetUniformLocation(self.program, "model")
 
-        # Escala interativa: Z/X alteram state.trigo_scale
+
         s = state.trigo_scale
         t_y = 0.0
         r_x = 0.0
         r_y = 1.0
         r_z = 0.0
-        # Mesmo que o cavalo: campo no plano XY com "altura" em Z → −90° em X para ficar ereto no solo
+
         angle_rx = -90.0
 
-        # (ângulo Y, x, z) — à direita do banco (4,15), perto do cavalo (11,11), sem atravessar o banco
+
         instancias = [
             (18.0, 12.0, 10.5),
             (-22.0, 9.5, 9.8),
@@ -187,7 +182,7 @@ class Scene:
 
         glActiveTexture(GL_TEXTURE0)
         base = 301840
-        # Ordem das faces no OBJ + map_Kd em bucket.mtl: phong5→tex8, phong6→tex9, phong4→tex7, phong7→tex10; phong5 repete.
+
         fatias = [
             (8, 7488, 0),
             (9, 4176, 7488),
@@ -208,7 +203,7 @@ class Scene:
         t_y = 0.528711
 
         base = 443296
-        # Faixas Wood / WoodCut (sem Floor — ver comentário acima)
+
         fatias_mat = [
             ('Wood', 711, 0),
             ('WoodCut', 303, 711),
@@ -241,6 +236,73 @@ class Scene:
             for _nome, count, offset_local in fatias_mat:
                 glDrawArrays(GL_TRIANGLES, base + offset_local, count)
 
+    def desenha_cottage(self):
+        angle = 60.0
+        r_x = 0.0
+        r_y = 1.0
+        r_z = 0.0
+        s = 1.7
+        t_x = -5.0
+        t_y = 0.0
+        t_z = 5.0
+
+        mat_model = matrizes.model(angle, r_x, r_y, r_z, t_x, t_y, t_z, s, s, s)
+        loc_model = glGetUniformLocation(self.program, 'model')
+        glUniformMatrix4fv(loc_model, 1, GL_TRUE, mat_model)
+
+        glActiveTexture(GL_TEXTURE0)
+        base = 449386
+
+        fatias = [
+            (12, 0,      48),
+            (13, 48,     48),
+            (12, 96,   1038),
+            (14, 1134,   36),
+            (12, 1170,  360),
+            (15, 1530,  192),
+            (12, 1722,  204),
+            (15, 1926,  372),
+            (12, 2298,  312),
+            (15, 2610,  288),
+            (12, 2898,  312),
+            (15, 3210,  288),
+        ]
+        for tex_id, local_offset, count in fatias:
+            glBindTexture(GL_TEXTURE_2D, tex_id)
+            glDrawArrays(GL_TRIANGLES, base + local_offset, count)
+
+    def desenha_mesa(self):
+        mat_model = matrizes.model(60.0, 0.0, 1.0, 0.0, -5.0, 0.62, 5.0, 1.4, 1.4, 1.4)
+        loc_model = glGetUniformLocation(self.program, 'model')
+        glUniformMatrix4fv(loc_model, 1, GL_TRUE, mat_model)
+        glActiveTexture(GL_TEXTURE0)
+        glBindTexture(GL_TEXTURE_2D, 16)
+        glDrawArrays(GL_TRIANGLES, 452884, 492)
+
+    def desenha_cadeiras(self):
+        loc_model = glGetUniformLocation(self.program, 'model')
+        glActiveTexture(GL_TEXTURE0)
+        glBindTexture(GL_TEXTURE_2D, 17)
+
+        instancias = [
+            (330.0, -4.0, 0.7,  3.5),
+            (150.0, -6.0, 0.7,  6.5),
+            (240.0, -3.5, 0.7,  6.0),
+            (60.0, -6.5, 0.7,  4.0),
+        ]
+        for angle, tx, ty, tz in instancias:
+            mat_model = matrizes.model(angle, 0.0, 1.0, 0.0, tx, ty, tz, 1.0, 1.0, 1.0)
+            glUniformMatrix4fv(loc_model, 1, GL_TRUE, mat_model)
+            glDrawArrays(GL_TRIANGLES, 453376, 2676)
+
+    def desenha_vela(self):
+        mat_model = matrizes.model(60.0, 0.0, 1.0, 0.0, -5.0, 1.97, 5.0, 10.0, 10.0, 10.0)
+        loc_model = glGetUniformLocation(self.program, 'model')
+        glUniformMatrix4fv(loc_model, 1, GL_TRUE, mat_model)
+        glActiveTexture(GL_TEXTURE0)
+        glBindTexture(GL_TEXTURE_2D, 18)
+        glDrawArrays(GL_TRIANGLES, 456052, 1512)
+
     def draw_all(self):
         """Execute all draw calls in order"""
         self.desenha_grama()
@@ -250,5 +312,9 @@ class Scene:
         self.desenha_trigos()
         self.desenha_bucket()
         self.desenha_tocos()
+        self.desenha_cottage()
+        self.desenha_mesa()
+        self.desenha_cadeiras()
+        self.desenha_vela()
         for x, y, z, esc in self.posicoes_arvores:
             self.desenha_arvore(x, y, z, esc)
